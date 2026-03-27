@@ -8,7 +8,8 @@ const elementIds = {
     newTodoInput: '#new-todo-input',
     clearCompletedButton: '.clear-completed',
     toggleAllLabel: 'label[for="toggle-all"]',
-    todoFilters: '.filtro'
+    todoFilters: '.filtro',
+    pendingCountLabel: '#pending-count'
 }
 
 /**
@@ -22,7 +23,7 @@ export const App = ( elementId ) => {
         renderTodos( elementIds.todoList, todos );
 
         const pendingCount = todoStore.getTodos( 'pending' ).length;
-        document.querySelector('#pending-count').innerText = pendingCount;
+        document.querySelector( elementIds.pendingCountLabel ).innerText = pendingCount;
     }
 
     //Cuando la funcion App se ejecute, se va a ejecutar la función anónima que se encuentra dentro de ella, esto es para evitar que el código se ejecute antes de tiempo, es decir, antes de que el DOM esté listo.
@@ -73,6 +74,7 @@ export const App = ( elementId ) => {
         todoStore.deleteCompleted();
         displayTodos();
     });
+    
 
     //Ocultar/mostrar la lista
     toggleAllLabel.addEventListener('click', ( event ) => {
